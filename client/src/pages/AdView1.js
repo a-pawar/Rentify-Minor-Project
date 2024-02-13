@@ -72,49 +72,7 @@ const AdDetails = () => {
       ];
     }
   };
-  // const initPay = (order) => {
-  //   axios.get("/getkey")
-  //     .then(response => {
-  //       const key = response.data.key;
 
-  //       const options = {
-  //         key: key,
-  //         amount: order.amount,
-  //         currency: "INR",
-  //         name: "Rentify:RoomRentalWebApplication",
-  //         description: "Test",
-  //         image: "https://www.shutterstock.com/image-vector/home-rent-icon-real-estate-260nw-2139501253.jpg",
-  //         order_id: order.id,
-  //         // handler: (response) => {
-  //         //   return new Promise(async (resolve, reject) => {
-  //         //     try {
-  //         //       const verifyData = {
-  //         //         paymentResponse: response,
-  //         //         adId: ad._id
-  //         //       };
-  //         //       console.log("ye response h adveiw me1 phle ", response);
-
-  //         //       const data = await axios.post("/paymentVerification", verifyData);
-  //         //       console.log("ye data h adveiw me1 ", data);
-  //         //       resolve();
-  //         //     } catch (error) {
-  //         //       console.log(error);
-  //         //       reject(error);
-  //         //     }
-  //         //   });
-  //         // },
-  //         theme: {
-  //           color: "#121212"
-  //         }
-  //       };
-
-  //       const razor = new window.Razorpay(options);
-  //       razor.open();
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
 
   const checkoutHandler = async (amount) => {
     try {
@@ -132,9 +90,6 @@ const AdDetails = () => {
         "order_id": order.id,
         // "callback_url": "http://localhost:8000/api/paymentverification",
         "handler": function (response) {
-          // alert(response.razorpay_payment_id);
-          // alert(response.razorpay_order_id);
-          // alert(response.razorpay_signature)
           console.log(response.razorpay_payment_id, response.razorpay_order_id, response.razorpay_signature);
           const verify = async () => {
             const { data } = await axios.post("paymentverification", {
